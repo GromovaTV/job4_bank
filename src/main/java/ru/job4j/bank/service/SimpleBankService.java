@@ -5,12 +5,15 @@ import ru.job4j.bank.model.Account;
 import ru.job4j.bank.model.User;
 import ru.job4j.bank.repository.AccountRepository;
 import ru.job4j.bank.repository.UserRepository;
+
 import java.util.Optional;
 
 @Service
 public class SimpleBankService implements BankService {
+
     private final UserRepository userRepository;
     private final AccountRepository accountRepository;
+
     public SimpleBankService(UserRepository userRepository,
                              AccountRepository accountRepository) {
         this.userRepository = userRepository;
@@ -43,8 +46,9 @@ public class SimpleBankService implements BankService {
     }
 
     @Override
-    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String destRequisite, double
-            amount) {
+    public boolean transferMoney(String srcPassport, String srcRequisite,
+                                 String destPassport, String destRequisite,
+                                 double amount) {
         var srcAccount = findByRequisite(srcPassport, srcRequisite);
         if (srcAccount.isEmpty()) {
             return false;

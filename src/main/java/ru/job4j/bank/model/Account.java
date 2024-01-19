@@ -3,6 +3,7 @@ package ru.job4j.bank.model;
 import java.util.Objects;
 
 public class Account extends Id {
+
     private String requisite;
     private double balance;
     private User user;
@@ -38,13 +39,19 @@ public class Account extends Id {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         Account account = (Account) o;
-        return Double.compare(account.balance, balance) == 0 &&
-                Objects.equals(requisite, account.requisite) &&
-                Objects.equals(user, account.user);
+        return Double.compare(account.balance, balance) == 0
+                && Objects.equals(requisite, account.requisite)
+                && Objects.equals(user, account.user);
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class User extends Id {
+
     private String passport;
     private String username;
     private List<Account> accounts = new CopyOnWriteArrayList<>();
@@ -40,13 +41,19 @@ public class User extends Id {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         User user = (User) o;
-        return Objects.equals(passport, user.passport) &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(accounts, user.accounts);
+        return Objects.equals(passport, user.passport)
+                && Objects.equals(username, user.username)
+                && Objects.equals(accounts, user.accounts);
     }
 
     @Override

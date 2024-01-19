@@ -3,8 +3,10 @@ package ru.job4j.bank.model;
 import java.util.Objects;
 
 public abstract class Id {
-    protected int id;
-    public Id() {};
+
+    private int id;
+
+    public Id() { }
 
     public int getId() {
         return id;
@@ -16,8 +18,12 @@ public abstract class Id {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Id id1 = (Id) o;
         return id == id1.id;
     }

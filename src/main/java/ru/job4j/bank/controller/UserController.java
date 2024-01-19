@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.bank.model.User;
 import ru.job4j.bank.service.BankService;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,7 +17,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class.getSimpleName());
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+            UserController.class.getSimpleName());
     private final BankService bankService;
     private final ObjectMapper objectMapper;
 
@@ -45,9 +48,12 @@ public class UserController {
         return bankService.findByPassport(password).orElse(null);
     }
 
-    @ExceptionHandler(value = { IllegalArgumentException.class })
-    public void exceptionHandler(Exception e, HttpServletRequest request, HttpServletResponse response) throws IOException
-    {
+    @ExceptionHandler(value = {
+            IllegalArgumentException.class
+    })
+    public void exceptionHandler(Exception e,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response) throws IOException {
         response.setStatus(HttpStatus.BAD_REQUEST.value());
         response.setContentType("application/json");
         response.getWriter().write(objectMapper.writeValueAsString(new HashMap<>() { {

@@ -1,6 +1,7 @@
 package ru.job4j.bank.repository;
 
 import ru.job4j.bank.model.Id;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -9,8 +10,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Store<T extends Id> {
-    protected Map<Integer, T> store = new ConcurrentHashMap<>();
-    protected AtomicInteger idGenerator = new AtomicInteger(0);
+
+    private Map<Integer, T> store = new ConcurrentHashMap<>();
+    private AtomicInteger idGenerator = new AtomicInteger(0);
+
+    public Map<Integer, T> getStore() {
+        return store;
+    }
+
+    public AtomicInteger getIdGenerator() {
+        return idGenerator;
+    }
 
     public T saveOrUpdate(T model) {
         if (store.containsKey(model.getId())) {

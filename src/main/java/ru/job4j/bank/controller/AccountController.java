@@ -5,12 +5,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.job4j.bank.model.Account;
 import ru.job4j.bank.service.BankService;
+
 import java.util.Map;
 
 @RestController
 @RequestMapping("/account")
 public class AccountController {
+
     private final BankService bankService;
+
     public AccountController(BankService bankService) {
         this.bankService = bankService;
     }
